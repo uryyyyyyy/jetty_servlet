@@ -3,6 +3,28 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
    http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     version="2.4">
+    
+<!-- JDBCに関するパラメータ設定 (H2 DB) -->
+  <context-param>
+    <param-name>jdbcDriver</param-name>
+    <param-value>org.h2.Driver</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>jdbcUri</param-name>
+    <param-value>jdbc:h2:~/jetty_servlet</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>dbUser</param-name>
+    <param-value>sa</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>dbPassword</param-name>
+    <param-value></param-value>
+  </context-param>
+<!-- ここまで -->
 
     <servlet>
         <servlet-name>hello</servlet-name>
@@ -11,6 +33,15 @@
     <servlet-mapping>
         <servlet-name>hello</servlet-name>
         <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>jdbcSample</servlet-name>
+        <servlet-class>com.example.sample.JdbcConnectServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>jdbcSample</servlet-name>
+        <url-pattern>/jdbcSample</url-pattern>
     </servlet-mapping>
 
 </web-app>
