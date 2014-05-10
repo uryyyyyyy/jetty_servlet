@@ -1,4 +1,4 @@
-package com.example.simpleuploader;
+package com.example.uploader;
 
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;

@@ -1,4 +1,4 @@
-package com.example.simpleuploader;
+package com.example.uploader;
 
 import java.io.File;
 import java.io.IOException;
