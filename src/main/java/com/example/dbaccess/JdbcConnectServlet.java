@@ -8,10 +8,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import javax.servlet.ServletContext;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@WebServlet("/jdbcSample")
 public class JdbcConnectServlet extends HttpServlet{
 
 	/**

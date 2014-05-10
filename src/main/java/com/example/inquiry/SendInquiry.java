@@ -18,9 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.sun.mail.smtp.SMTPTransport;
 
 
-/**
- * Servlet implementation class SendInquiry
- */
 @WebServlet("/SendInquiry")
 public class SendInquiry extends HttpServlet {
 	private static final long serialVersionUID = 1L;

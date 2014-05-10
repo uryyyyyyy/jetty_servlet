@@ -25,33 +25,6 @@
     <param-value></param-value>
   </context-param>
 <!-- ここまで -->
-
-    <servlet>
-        <servlet-name>hello</servlet-name>
-        <servlet-class>com.example.inquiry.SampleServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>hello</servlet-name>
-        <url-pattern>/hello</url-pattern>
-    </servlet-mapping>
     
-    <servlet>
-        <servlet-name>SendInquiry</servlet-name>
-        <servlet-class>com.example.inquiry.SendInquiry</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SendInquiry</servlet-name>
-        <url-pattern>/SendInquiry</url-pattern>
-    </servlet-mapping>
-    
-    
-    <servlet>
-        <servlet-name>jdbcSample</servlet-name>
-        <servlet-class>com.example.dbaccess.JdbcConnectServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>jdbcSample</servlet-name>
-        <url-pattern>/jdbcSample</url-pattern>
-    </servlet-mapping>
 
 </web-app>

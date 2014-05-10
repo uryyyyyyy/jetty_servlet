@@ -1,7 +1,20 @@
 apply plugin: "java"
 apply plugin: "eclipse"
 apply plugin: "war"
-apply plugin: "jetty"
+
+// to use jetty9 (container that corresponds to the servlet3.X version), 
+// you should this -> https://github.com/Khoulaiz/gradle-jetty-eclipse-plugin
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath (group: 'com.sahlbach.gradle', name: 'gradle-jetty-eclipse-plugin', version: '1.9.+')
+    }
+}
+apply plugin: 'jettyEclipse'
+
+// ↑
 
 def defaultEncoding = 'UTF-8'
 
