@@ -1,4 +1,4 @@
-package com.example.sample;
+package com.example.dbaccess;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class JdbcConnectServlet extends HttpServlet{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7690701083637026466L;
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)

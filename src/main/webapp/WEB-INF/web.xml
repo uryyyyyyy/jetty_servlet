@@ -28,7 +28,7 @@
 
     <servlet>
         <servlet-name>hello</servlet-name>
-        <servlet-class>com.example.sample.SampleServlet</servlet-class>
+        <servlet-class>com.example.inquiry.SampleServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>hello</servlet-name>
@@ -36,8 +36,18 @@
     </servlet-mapping>
     
     <servlet>
+        <servlet-name>SendInquiry</servlet-name>
+        <servlet-class>com.example.inquiry.SendInquiry</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SendInquiry</servlet-name>
+        <url-pattern>/SendInquiry</url-pattern>
+    </servlet-mapping>
+    
+    
+    <servlet>
         <servlet-name>jdbcSample</servlet-name>
-        <servlet-class>com.example.sample.JdbcConnectServlet</servlet-class>
+        <servlet-class>com.example.dbaccess.JdbcConnectServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>jdbcSample</servlet-name>
