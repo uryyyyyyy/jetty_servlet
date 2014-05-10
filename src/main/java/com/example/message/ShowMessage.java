@@ -68,16 +68,16 @@ public class ShowMessage extends HttpServlet {
 				rows++;
 			}
 
-			outMessage = "�����b�Z�[�W��" + rows + "�����o���܂����B";
+			outMessage = "show" + rows + "posts";
 		} catch (SQLException e) {
-			outMessage = "�����b�Z�[�W�̎��o���Ɏ��s���܂����B<br><br>" + e;
+			outMessage = "error<br><br>" + e;
 		}
 
 		try {
 			if (statement != null) statement.close();
 			if (connection != null) connection.close();
 		} catch (SQLException e) {
-			outMessage = "���f�[�^�x�[�X�̐ؒf�Ɏ��s���܂����B<br><br>" + e;
+			outMessage = "error<br><br>" + e;
 		}
 
 		HttpSession session = request.getSession();
