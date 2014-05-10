@@ -28,82 +28,82 @@ public class ShowMessage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sql = "SELECT message_id,message_title,message," +
-			"user_name,entry_date" +
-			" FROM message_tb" +
-			" ORDER BY entry_date";
-		
+				"user_name,entry_date" +
+				" FROM message_tb" +
+				" ORDER BY entry_date";
+
 		String outMessage = "";
 		String data = "";
 		int rows = 0;
-		
+
 		String database = "jdbc:mysql://localhost/sample_db" +
-			"?useUnicode=true&characterEncoding=UTF8";
+				"?useUnicode=true&characterEncoding=UTF8";
 		String user = "sample_user";
 		String password = "sample_pass";
-		
+
 		Connection connection = null;
 		Statement statement = null;
-		
+
 		try {
 			connection = DriverManager.getConnection(database,
 					user, password);
 			statement = connection.createStatement();
-		
+
 			ResultSet resultSet = statement.executeQuery(sql);
-		
+
 			while(resultSet.next()) {
 				data += "<tr>";
 				data += "<td>" +
-					resultSet.getString("message_id") + "</td>";
+						resultSet.getString("message_id") + "</td>";
 				data += "<td>" +
-					resultSet.getString("message_title") + "</td>";
+						resultSet.getString("message_title") + "</td>";
 				data += "<td>" +
-					resultSet.getString("message") + "</td>";
+						resultSet.getString("message") + "</td>";
 				data += "<td>" +
-					resultSet.getString("user_name") + "</td>";
+						resultSet.getString("user_name") + "</td>";
 				data += "<td>" +
-					resultSet.getString("entry_date") + "</td>";
+						resultSet.getString("entry_date") + "</td>";
 				data += "</tr>";
-				
+
 				rows++;
 			}
-		
+
 			outMessage = "�����b�Z�[�W��" + rows + "�����o���܂����B";
 		} catch (SQLException e) {
 			outMessage = "�����b�Z�[�W�̎��o���Ɏ��s���܂����B<br><br>" + e;
 		}
-		
+
 		try {
 			if (statement != null) statement.close();
 			if (connection != null) connection.close();
 		} catch (SQLException e) {
 			outMessage = "���f�[�^�x�[�X�̐ؒf�Ɏ��s���܂����B<br><br>" + e;
 		}
-		
+
 		HttpSession session = request.getSession();
-		
+
 		boolean login = false;
 		if (session.getAttribute("login") != null) {
 			login = (Boolean)session.getAttribute("login");
 		}
-		
+
 		String displayUserName =
-			(String)session.getAttribute("displayUserName");
-		
+				(String)session.getAttribute("displayUserName");
+
 		if (!login) {
 			response.sendRedirect("login.html");
 		}
-		
+
 		response.setHeader("Cache-Control",
-			"no-store, no-cache, must-revalidate");
+				"no-store, no-cache, must-revalidate");
 		response.addHeader("Cache-Control",
-			"post-check=0, pre-check=0");
+				"post-check=0, pre-check=0");
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires",0);
 		Date today = new Date();
 		response.setDateHeader("Last-Modified",
 				today.getTime());
-		
+
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");

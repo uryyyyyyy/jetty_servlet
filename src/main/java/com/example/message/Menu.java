@@ -24,31 +24,37 @@ public class Menu extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+
 		boolean login = false;
 		if (session.getAttribute("login") != null) {
 			login = (Boolean)session.getAttribute("login");
 		}
 		String displayUserName
-			= (String)session.getAttribute("displayUserName");
-		
+		= (String)session.getAttribute("displayUserName");
+
 		if (!login) {
 			response.sendRedirect("login.html");
 		}
-		
+
 		response.setHeader("Cache-Control",
-			"no-store, no-cache, must-revalidate");
+				"no-store, no-cache, must-revalidate");
 		response.addHeader("Cache-Control",
-			"post-check=0, pre-check=0");
+				"post-check=0, pre-check=0");
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires",0);
 		Date today = new Date();
 		response.setDateHeader("Last-Modified", today.getTime());
-		
+
 		response.setContentType("text/html; charset=UTF-8");
 
+		writeOutput(response, displayUserName);
+	}
+
+
+	private void writeOutput(HttpServletResponse response,
+			String displayUserName) throws IOException {
 		PrintWriter out = response.getWriter();
-		
+
 		out.println("<html><body>");
 		out.println("Login: <b>" + displayUserName + "</b>");
 		out.println("<hr>");
@@ -60,7 +66,7 @@ public class Menu extends HttpServlet {
 		out.println("<li><a href=\"ShowMessage\">���b�Z�[�W��ǂ�</a>");
 		out.println("</ul>");
 		out.println("</body></html>");
-		
+
 		out.close();
 	}
 

@@ -24,24 +24,24 @@ public class OkLogin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+
 		boolean login = false;
 		if (session.getAttribute("login") != null) {
 			login = (Boolean)session.getAttribute("login");
 		}
 		String displayUserName
-			= (String)session.getAttribute("displayUserName");
-		
+		= (String)session.getAttribute("displayUserName");
+
 		response.setHeader("Cache-Control",
-			"no-store, no-cache, must-revalidate");
+				"no-store, no-cache, must-revalidate");
 		response.addHeader("Cache-Control",
-			"post-check=0, pre-check=0");
+				"post-check=0, pre-check=0");
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires",0);
 		Date today = new Date();
 		response.setDateHeader("Last-Modified",
 				today.getTime());
-		
+
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
@@ -53,7 +53,7 @@ public class OkLogin extends HttpServlet {
 		} else {
 			out.println("�����O�C�����Ă��܂���B");
 		}
-		
+
 		out.println("</body></html>");
 		out.close();
 	}

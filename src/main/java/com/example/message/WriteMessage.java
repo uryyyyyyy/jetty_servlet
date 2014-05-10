@@ -26,29 +26,34 @@ public class WriteMessage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+
 		boolean login = false;
 		if (session.getAttribute("login") != null) {
 			login = (Boolean)session.getAttribute("login");
 		}
 		String displayUserName
-			= (String)session.getAttribute("displayUserName");
-		
+		= (String)session.getAttribute("displayUserName");
+
 		if (!login) {
 			response.sendRedirect("login.html");
 		}
-		
+
 		response.setHeader("Cache-Control",
-			"no-store, no-cache, must-revalidate");
+				"no-store, no-cache, must-revalidate");
 		response.addHeader("Cache-Control",
-			"post-check=0, pre-check=0");
+				"post-check=0, pre-check=0");
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires",0);
 		Date today = new Date();
 		response.setDateHeader("Last-Modified",
 				today.getTime());
-		
+
 		response.setContentType("text/html; charset=UTF-8");
+		writeOutput(response, displayUserName);
+	}
+
+	private void writeOutput(HttpServletResponse response,
+			String displayUserName) throws IOException {
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		out.println("Login: <b>" + displayUserName + "</b>");
@@ -75,39 +80,39 @@ public class WriteMessage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+
 		boolean login = false;
 		if (session.getAttribute("login") != null) {
 			login = (Boolean)session.getAttribute("login");
 		}
-		
+
 		String displayUserName =
-			(String)session.getAttribute("displayUserName");
-		
+				(String)session.getAttribute("displayUserName");
+
 		request.setCharacterEncoding("UTF-8");
 		String title = request.getParameter("title");
 		String message = request.getParameter("message");
 
 		String sql = "INSERT INTO message_tb" +
-			"(message_title,message,user_name)" +
-			"VALUES" +
-			"('" + title + "','" + message + "','" + displayUserName + "')";
-		
+				"(message_title,message,user_name)" +
+				"VALUES" +
+				"('" + title + "','" + message + "','" + displayUserName + "')";
+
 		String outMessage = "";
-		
+
 		String database = "jdbc:mysql://localhost/sample_db" +
-			"?useUnicode=true&characterEncoding=UTF8";
+				"?useUnicode=true&characterEncoding=UTF8";
 		String user = "sample_user";
 		String password = "sample_pass";
 
 		Connection connection = null;
 		Statement statement = null;
-		
+
 		try {
 			connection = DriverManager.getConnection(database,
 					user, password);
 			statement = connection.createStatement();
-		
+
 			if (login) {
 				int rows = statement.executeUpdate(sql);
 				outMessage = "�����b�Z�[�W��" + rows + "���o�^���܂����B";
@@ -115,30 +120,35 @@ public class WriteMessage extends HttpServlet {
 		} catch (Exception e) {
 			outMessage = "�����b�Z�[�W�̓o�^�Ɏ��s���܂����B<br><br>" + e;
 		}
-		
+
 		try {
 			if (statement != null) statement.close();
 			if (connection != null) connection.close();
 		} catch (Exception e) {
 			outMessage = "���f�[�^�x�[�X�̐ؒf�Ɏ��s���܂����B<br><br>"
-			+ e;
+					+ e;
 		}
-	
+
 		if (!login) {
 			response.sendRedirect("login.html");
 		}
-		
+
 		response.setHeader("Cache-Control",
-			"no-store, no-cache, must-revalidate");
+				"no-store, no-cache, must-revalidate");
 		response.addHeader("Cache-Control",
-			"post-check=0, pre-check=0");
+				"post-check=0, pre-check=0");
 		response.setHeader("Pragma", "no-cache");
 		response.setDateHeader("Expires",0);
 		Date today = new Date();
 		response.setDateHeader("Last-Modified",
-			today.getTime());
-		
+				today.getTime());
+
 		response.setContentType("text/html; charset=UTF-8");
+		writeOutput2(response, displayUserName, outMessage);
+	}
+
+	private void writeOutput2(HttpServletResponse response,
+			String displayUserName, String outMessage) throws IOException {
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
 		out.println("Login: <b>" + displayUserName + "</b>");
