@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
@@ -58,18 +59,18 @@ public class WriteMessage extends HttpServlet {
 		out.println("<html><body>");
 		out.println("Login: <b>" + displayUserName + "</b>");
 		out.println("<hr>");
-		out.println("<a href=\"Menu\">�y���j���[�z</a>");
-		out.println("<a href=\"Logout\">�y���O�A�E�g�z</a>");
+		out.println("<a href=\"Menu\">menu  </a>");
+		out.println("<a href=\"Logout\">logout  </a>");
 		out.println("<hr>");
-		out.println("�����b�Z�[�W���͂��Ă��������B<br><br>");
+		out.println("please write message<br><br>");
 		out.println("<form action=\"WriteMessage\" method=\"POST\">");
-		out.println("�^�C�g���F<br>");
+		out.println("title  <br>");
 		out.println("<input type=\"text\" name=\"title\" size=\"50\">");
 		out.println("<br><br>");
-		out.println("���b�Z�[�W�F<br>");
+		out.println("message  <br>");
 		out.println("<textarea name=\"message\" cols=\"40\"	rows=\"5\"></textarea>");
 		out.println("<br><br>");
-		out.println("<input type=\"submit\" value=\"���b�Z�[�W�̓o�^\">");
+		out.println("<input type=\"submit\" value=\"register\">");
 		out.println("</form>");
 		out.println("</body></html>");
 		out.close();
@@ -115,17 +116,17 @@ public class WriteMessage extends HttpServlet {
 
 			if (login) {
 				int rows = statement.executeUpdate(sql);
-				outMessage = "�����b�Z�[�W��" + rows + "���o�^���܂����B";
+				outMessage = "register" + rows + "posts";
 			}
-		} catch (Exception e) {
-			outMessage = "�����b�Z�[�W�̓o�^�Ɏ��s���܂����B<br><br>" + e;
+		} catch (SQLException e) {
+			outMessage = "error<br><br>" + e;
 		}
 
 		try {
 			if (statement != null) statement.close();
 			if (connection != null) connection.close();
-		} catch (Exception e) {
-			outMessage = "���f�[�^�x�[�X�̐ؒf�Ɏ��s���܂����B<br><br>"
+		} catch (SQLException e) {
+			outMessage = "error<br><br>"
 					+ e;
 		}
 
@@ -153,12 +154,12 @@ public class WriteMessage extends HttpServlet {
 		out.println("<html><body>");
 		out.println("Login: <b>" + displayUserName + "</b>");
 		out.println("<hr>");
-		out.println("<a href=\"Menu\">�y���j���[�z</a>");
-		out.println("<a href=\"Logout\">�y���O�A�E�g�z</a>");
+		out.println("<a href=\"Menu\">menu  </a>");
+		out.println("<a href=\"Logout\">logout  </a>");
 		out.println("<hr>");
 		out.println(outMessage);
 		out.println("<br><br>");
-		out.println("<a href=\"ShowMessage\">���b�Z�[�W��ǂ�</a>");
+		out.println("<a href=\"ShowMessage\">read messages</a>");
 		out.println("</body></html>");
 		out.close();
 	}

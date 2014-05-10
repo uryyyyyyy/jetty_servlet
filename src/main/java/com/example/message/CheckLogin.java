@@ -59,14 +59,14 @@ public class CheckLogin extends HttpServlet {
 			}
 		} catch (SQLException e) {
 			login = false;
-			log("�ڑ����s�F" + e);
+			log("err" + e);
 		}
 
 		try {
 			if (statement != null) statement.close();
 			if (connection != null) connection.close();
 		} catch (SQLException e) {
-			log("�ؒf���s�F" + e);
+			log("err" + e);
 		}
 
 		HttpSession session = request.getSession();

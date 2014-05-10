@@ -47,11 +47,11 @@ public class OkLogin extends HttpServlet {
 		out.println("<html><body>");
 
 		if (login) {
-			out.println("�����O�C�����ł��B");
+			out.println("now login");
 			out.println("<br><br>");
-			out.println("�ڑ����[�U�[�F" + displayUserName);
+			out.println("userName" + displayUserName);
 		} else {
-			out.println("�����O�C�����Ă��܂���B");
+			out.println("now logout");
 		}
 
 		out.println("</body></html>");

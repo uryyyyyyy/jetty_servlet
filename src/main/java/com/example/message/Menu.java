@@ -58,12 +58,12 @@ public class Menu extends HttpServlet {
 		out.println("<html><body>");
 		out.println("Login: <b>" + displayUserName + "</b>");
 		out.println("<hr>");
-		out.println("<a href=\"Logout\">�y���O�A�E�g�z</a>");
+		out.println("<a href=\"Logout\">logout</a>");
 		out.println("<hr>");
-		out.println("���f�����j���[<br>");
+		out.println("menu<br>");
 		out.println("<ul>");
-		out.println("<li><a href=\"WriteMessage\">���b�Z�[�W������</a>");
-		out.println("<li><a href=\"ShowMessage\">���b�Z�[�W��ǂ�</a>");
+		out.println("<li><a href=\"WriteMessage\">write message</a>");
+		out.println("<li><a href=\"ShowMessage\">read message</a>");
 		out.println("</ul>");
 		out.println("</body></html>");
 

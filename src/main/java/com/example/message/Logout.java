@@ -40,7 +40,7 @@ public class Logout extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><body>");
-		out.println("�����O�A�E�g���܂����B");
+		out.println("you did logout");
 		out.println("</body></html>");
 		out.close();
 	}
